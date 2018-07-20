@@ -1,0 +1,42 @@
+{% extends 'admin/master.html' %}
+{% from "render_field.html" import render_field %}
+
+{% block body %}
+{{ super() }}
+<div class="row-fluid">
+
+    <div>
+        {% if current_user.is_authenticated %}
+
+           {% for message in get_flashed_messages() %}
+              <div class="alert alert-warning">
+                     <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message }}
+               </div>
+           {% endfor %}
+
+        <h1>Administrator Database-View Page</h1>
+        <h5 class="lead">
+            LINK ROAD WEST CONGREGATION
+        </h5>
+        <h5>
+            Kindly Log out After viewing the Page.....!
+        </h5>
+    </div>
+        {% else %}
+    <div>
+        {{ link | safe }}
+        <form method="POST" action="" class="container">
+                {{ form.hidden_tag() }}
+                {{ render_field(form.login, placeholder=form.login.label.text ) }}
+                {{ render_field(form.password, placeholder=form.password.label.text ) }}
+                <div class="btn">
+                  <input class="btn btn-primary" type="submit"  value="Login">
+                </div>
+            </form>
+            <a class="btn btn-primary" href="/login"><i class="icon-arrow-left icon-white"></i> Back</a>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% from "render_field.html" import render_field %}
+
+
+{% block title %}checkCode{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4" style="border: 3px solid black; box-shadow: 1px 2px 50px;">
+            <h3>Enter Verification Code</h3>
+                    {% for message in get_flashed_messages() %}
+                         <div class="alert alert-warning">
+                         <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ message }}
+                         </div>
+                     {% endfor %}
+            
+            <form action="/codecheck" method="POST">
+                {{ form.hidden_tag() }}
+                {{ render_field(form.code) }}
+                 <div class="btn">
+                      <input class="btn btn-primary" type="submit"  value="Verify Code"> <a href="/" style="margin-left: 20px;">Cancel</a>
+                 </div>
+            </form>
+        </div>
+
+
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

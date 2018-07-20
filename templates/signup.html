@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% from "render_field.html" import render_field %}
+
+{% block title %}signup{% endblock %}
+
+{% block body %}
+<div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4" >
+
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+
+            <h2>SIGN UP</h2>
+
+                    {% for message in get_flashed_messages() %}
+                         <div class="alert alert-warning">
+                         <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ message }}
+                         </div>
+                    {% endfor %}
+
+            <form method="POST" action="/signup" class="container">
+                {{ form.hidden_tag() }}
+                {{ render_field(form.username, placeholder=form.username.label.text) }}
+                {{ render_field(form.email, placeholder=form.email.label.text) }}
+                {{ render_field(form.password, placeholder=form.password.label.text) }}
+                {{ render_field(form.confirm, placeholder=form.confirm.label.text) }}
+                <div class="btn">
+                  <input class="btn btn-primary" type="submit"  value="Create account"> <a href="/logout" style="margin-left: 20px;">Cancel</a>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

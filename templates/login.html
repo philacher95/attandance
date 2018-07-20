@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% from "render_field.html" import render_field %}
+{% block title %}Login{% endblock %}
+
+{% block body %}
+<div>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4" >
+
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+             <h2>LOGIN</h2>
+            {% for message in get_flashed_messages() %}
+                         <div class="alert alert-warning">
+                         <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ message }}
+                         </div>
+            {% endfor %}
+
+            <form method="POST" action="/login" class="container">
+                {{ form.hidden_tag() }}
+                {{ render_field(form.username, placeholder=form.username.label.text ) }}
+                {{ render_field(form.password, placeholder=form.password.label.text ) }}
+                <div class="btn">
+                  <input class="btn btn-primary" type="submit"  value="Login"> <a href="/" style="margin-left: 20px;">Cancel</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

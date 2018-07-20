@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+  <div>
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+      <h3>NOTICE</h3>
+       <ul style="border:1px solid black; " class="bg-warning">
+           <li><b>Only Attendants can create an account here.</b></li>
+       </ul>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+      <h3>SIGN-UP</h3>
+        <h5>Take a <em><b class="text-info">SECRET CODE</b></em> from the page Admin before progressing with your account creation</h5><br>
+        <a href="/codecheck"><button type="button" class="btn btn-primary">Create Account</button></a>
+    </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+      <h3>LOGIN</h3>
+        <h5>Please Login if you already have an Account</h5><br>
+        <a href="/login"><button type="button" class="btn btn-primary">Login</button></a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

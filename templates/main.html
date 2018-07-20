@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% from "render_field.html" import render_field %}
+
+{% block title %}Main{% endblock %}
+
+{% block body %}
+{% if current_user.is_authenticated %}
+<div class="container">
+   <ul class="nav justify-content-end nav-pills">
+        <li class="nav-item">
+            <a  href="#" class="nav-link"><b>{{ name }}</b></a>
+        </li>
+       {% endif %}
+          <a class="nav-link active" href="/logout">LOGOUT</a>
+        </li>
+   </ul>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4" >
+            <a href="/admin"><button class="btn btn-info">View All Records</button></a>
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            {% for message in get_flashed_messages() %}
+                         <div class="alert alert-success">
+                         <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ message }}
+                         </div>
+            {% endfor %}
+
+            <form method="POST" action="/main" class="container">
+                {{ form.hidden_tag() }}
+                {{ render_field(form.day) }}
+                {{ render_field(form.date, placeholder=form.format) }}
+                {{ render_field(form.attendance) }}
+                {{ render_field(form.comment, placeholder=form.comment.label.text) }}
+                <div class="btn">
+                  <input class="btn btn-primary" type="submit"  value="Submit"> <a href="/" style="margin-left: 20px;">Cancel</a>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
